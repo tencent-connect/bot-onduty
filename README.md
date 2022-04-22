@@ -29,7 +29,7 @@ QQ机器人是基于QQ开放生态的高级扩展服务，通过开放的接口�
 py包的依赖配置，通过`pip install -r requirements.txt` 可以安装所有的依赖包
 
 ### 数据库导入
-通过执行bot_onduty的sql语句可以导入到你自己的数据库中
+通过执行`dao`目录下的sql语句可以导入数据结构到你自己的数据库中
 - **数据库：bot_onduty 类型`mysql`**
   - t_feedback 反馈表
   - t_owner 值班表
