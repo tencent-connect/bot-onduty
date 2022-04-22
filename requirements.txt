@@ -1,0 +1,6 @@
+PyMySQL
+DBUtils
+qq-bot
+schedule
+PyYAML
+aiohttp

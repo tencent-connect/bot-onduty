@@ -1,0 +1,16 @@
+token:
+  appid: "123" # 机器人appid
+  token: "xxx" # 机器人token
+database:
+  host: "x.x.x.x" # Mysql数据库服务IP地址
+  port: 3306 # Mysql数据库服务端口
+  db: "db_xxx" # Mysql数据库连接database名字
+  user: "mysql" # Mysql数据库连接用户名
+  password: "mysql_xxx" # Mysql数据库连接password
+params:
+  channelId: "123456" # 默认的推送子频道id
+  userId: "1234567890" # 默认的值班人员userId
+  userName: "bot" # 默认的值班人员名字
+webhook:
+  qwx: "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?xxx" # 企业微信机器人通知的webhook地址
+
