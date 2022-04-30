@@ -26,14 +26,13 @@ class Command:
         @wraps(func)
         async def decorated(*args, **kwargs):
             message: qqbot.Message = kwargs["message"]
-            command = self.command
-            if command and command in message.content:
-                qqbot.logger.debug("command %s match" % command)
+            if self.command in message.content:
+                qqbot.logger.debug("command %s match" % self.command)
                 # 分割指令后面的指令参数
-                params = message.content.split(command)[1].lstrip()
+                params = message.content.split(self.command)[1].lstrip()
                 return await func(message=message, params=params)
             else:
-                qqbot.logger.debug("command %s not match, skip!" % command)
+                qqbot.logger.debug("command %s not match, skip!" % self.command)
                 return False
 
         return decorated
