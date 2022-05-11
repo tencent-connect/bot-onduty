@@ -62,11 +62,34 @@ def get_feedback_item_markdown(feedback) -> str:
     )
 
 
+def get_morning_markdown_content(owners) -> str:
+    if not owners:
+        return ""
+
+    markdown_content = "**新的一天开始啦，全员禁言已解除，有问题和建议可以找我反馈哦**\n\n"
+
+    # 添加值班信息
+    markdown_content += "今日值班人员：\n\n"
+    for owner in owners:
+        markdown_content += "> 「%s」\t%s\n" % (owner["owner_type"], owner["owner_name"])
+
+    # 添加可用指令信息
+    markdown_content += "\n\n全员可用指令：\n" \
+    + "\n> **/问题反馈** [问题内容]" \
+    + "\n> 反馈一些问题，并通知值班人员" \
+    + "\n> **/产品建议** [建议内容]" \
+    + "\n> 提供一些需求建议，并通知值班人员" \
+    + "\n> **/查看值班表**" \
+    + "\n> 查看当前的官方值班表和今日值班人员"
+
+    return markdown_content
+
+
 def get_owners_markdown_content(owners) -> str:
     markdown_content = "值班表排期「最近7天」\n------\n"
     i = 0
     j = 0
-    while i < 7:
+    while i < 7 and j < len(owners):
         owner1 = owners[j]
         j = j + 1
         if j < len(owners) and owner1["on_duty_time"] == owners[j]["on_duty_time"]:

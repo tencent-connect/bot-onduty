@@ -3,7 +3,7 @@ from datetime import date
 from typing import List
 
 import qqbot
-
+from qqbot.model.ws_context import WsContext
 from constant import config
 from constant.type import OwnerType, FeedbackType
 from constant.words import BotReply, BotNotify, BotDefault
@@ -41,7 +41,7 @@ async def _query_today_feedback(message):
 
     markdown_content = get_feedbacks_markdown_content(feedbacks)
     qqbot.logger.info("handle_get_feedback, feedback_list: %s" % feedbacks)
-    await reply_markdown_content(message.channel_id, message.id, markdown_content)
+    await reply_markdown_content(message.channel_id, markdown_content, message.id)
 
 
 async def _query_owner_list(message):
@@ -49,7 +49,7 @@ async def _query_owner_list(message):
 
     markdown_content = get_owners_markdown_content(owners)
     qqbot.logger.info("query_owner_list, owners: %s" % owners)
-    await reply_markdown_content(message.channel_id, message.id, markdown_content)
+    await reply_markdown_content(message.channel_id, markdown_content, message.id)
 
 
 async def _notice_manager(feedback_id, message, notify, owner_on_duty_id, owner_on_duty_name, params):
@@ -136,7 +136,7 @@ async def handle_get_help(message: qqbot.Message, params=None):
     """
     /帮助
     """
-    await reply_markdown_content(message.channel_id, message.id, BotDefault.DEFAULT_HELP_MD)
+    await reply_markdown_content(message.channel_id, BotDefault.DEFAULT_HELP_MD, message.id)
     return True
 
 
@@ -348,11 +348,11 @@ async def handle_reset_owner(message: qqbot.Message, params=None):
     return True
 
 
-async def _message_handler(event, message: qqbot.Message):
+async def _message_handler(context: WsContext, message: qqbot.Message):
     # 打印返回信息
     qqbot.logger.info(
-        "event %s" % event
-        + ",receive message %s, guild_id: %s, channel_id: %s" % (message.content, message.guild_id, message.channel_id)
+        "event_id: %s" % context.event_id
+        + ", receive message %s, guild_id: %s, channel_id: %s" % (message.content, message.guild_id, message.channel_id)
     )
 
     # 注册指令handler

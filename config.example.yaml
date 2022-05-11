@@ -8,7 +8,9 @@ database:
   user: "mysql" # Mysql数据库连接用户名
   password: "mysql_xxx" # Mysql数据库连接password
 params:
+  guildId: "12345677890"
   channelId: "123456" # 默认的推送子频道id
+  publicChannelId: "123456" # 公共通知的发送频道
   userId: "1234567890" # 默认的值班人员userId
   userName: "bot" # 默认的值班人员名字
 webhook:
