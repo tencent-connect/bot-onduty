@@ -26,7 +26,7 @@ class DBConfig:
         :param port:数据库端口
         :param db:库名
         :param user:用户名
-        :param passwd:密码
+        :param password:密码
         :param charset:字符编码
         """
         self.host = host
